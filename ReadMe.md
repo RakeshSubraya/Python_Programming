@@ -11,11 +11,20 @@ Python_Programming/
 |-- ReadMe.md
 |-- .gitignore
 |
-`-- RAG_Implementaion/
+|-- RAG_Implementaion/
+|   |-- README.md
+|   |-- requirements.txt
+|   |-- *.py
+|   `-- old/
+|
+`-- expense-agent/
     |-- README.md
     |-- requirements.txt
-    |-- *.py
-    `-- old/
+    |-- main.py
+    |-- models/
+    |-- repositories/
+    |-- services/
+    `-- utils/
 ```
 
 ## Current Projects
@@ -42,6 +51,26 @@ Project folder:
 RAG_Implementaion/
 ```
 
+### expense-agent
+
+This project is a local AI expense tracker. It uses Ollama to parse human-written expense details into JSON and stores the records in a SQLite database.
+
+Current implementation areas:
+
+1. Natural-language expense entry.
+2. Ollama-based JSON extraction.
+3. SQLite database storage.
+4. Expense listing.
+5. Expense search.
+6. Monthly expense summaries.
+7. Future full CRUD support.
+
+Project folder:
+
+```text
+expense-agent/
+```
+
 ## Planned Future Projects
 
 More Python projects can be added as separate folders, for example:
@@ -49,6 +78,7 @@ More Python projects can be added as separate folders, for example:
 ```text
 Python_Programming/
 |-- RAG_Implementaion/
+|-- expense-agent/
 |-- FastAPI_Projects/
 |-- Data_Analysis/
 |-- Automation_Scripts/
