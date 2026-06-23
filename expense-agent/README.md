@@ -22,6 +22,7 @@ Example parsed record:
 ## Features
 
 - Parse natural-language expense entries using local Ollama.
+- Show console feedback while Ollama is converting text to JSON.
 - Convert expense information into JSON.
 - Save expense records into SQLite.
 - List saved expenses.
@@ -117,8 +118,10 @@ Menu options:
 
 ```text
 User expense text
+-> Console progress indicator
 -> OllamaService
 -> JSON expense data
+-> Expense preview
 -> Expense model
 -> ExpenseRepository
 -> SQLite database

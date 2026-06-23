@@ -1,5 +1,6 @@
 from models.expense import Expense
 from utils.date_parser import DateParser
+from utils.console_feedback import Spinner
 from datetime import datetime
 from datetime import date
 import calendar
@@ -15,10 +16,19 @@ class ExpenseService:
         self.expense_repository = expense_repository
 
     def add_expense(self, user_text: str):
- 
-        data = self.ollama_service.extract_expense(
-            user_text
-        )
+
+        print("\nReading your expense entry...")
+
+        with Spinner("Asking local Ollama to convert the expense into JSON"):
+            data = self.ollama_service.extract_expense(
+                user_text
+            )
+
+        print("Expense details extracted:")
+        print(f"  Date        : {data.get('expense_date', date.today().isoformat())}")
+        print(f"  Amount      : {data['amount']}")
+        print(f"  Category    : {data['category']}")
+        print(f"  Description : {data['description']}")
         
      
         expense = Expense(
@@ -32,9 +42,13 @@ class ExpenseService:
         )
         
 
+        print("\nSaving expense to database...")
+
         self.expense_repository.save(
             expense
         )
+
+        print("Expense saved successfully.")
 
         return expense
         
