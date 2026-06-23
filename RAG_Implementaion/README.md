@@ -1,13 +1,13 @@
-﻿# Python Programming
+﻿# RAG Implementation
 
-This repository is a learning and implementation workspace for Python-based LLM experiments. It starts with tokenizer and OpenAI API demos, then grows into a Retrieval-Augmented Generation (RAG) application using PDF loading, embeddings, vector search, streaming responses, FastAPI, and Docker.
+This project folder is a learning and implementation workspace for Python-based LLM experiments. It starts with tokenizer and OpenAI API demos, then grows into a Retrieval-Augmented Generation (RAG) application using PDF loading, embeddings, vector search, streaming responses, FastAPI, and Docker.
 
 ## Current Files
 
 The folder currently contains these starter scripts:
 
 ```text
-Python Programming/
+RAG_Implementaion/
 |-- README.md
 |-- requirements.txt
 |-- Encode_Example.py
@@ -24,7 +24,7 @@ Python Programming/
 The intended structure for the complete project is:
 
 ```text
-Python Programming/
+RAG_Implementaion/
 |-- README.md
 |-- requirements.txt
 |-- tokenizer_demo.py
@@ -82,7 +82,7 @@ This project will be built step by step:
 
 ## Setup
 
-Create and activate a virtual environment:
+From the `RAG_Implementaion` folder, create and activate a virtual environment:
 
 ```powershell
 python -m venv .venv
@@ -134,3 +134,4 @@ The planned FastAPI service will expose endpoints for:
 - Do not commit `.env` because it contains secrets.
 - Keep large PDFs and generated vector database files out of source control unless they are intentionally required.
 - Add `chromadb`, `fastapi`, `uvicorn`, and Docker files when those stages are implemented.
+
