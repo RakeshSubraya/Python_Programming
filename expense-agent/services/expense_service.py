@@ -19,7 +19,7 @@ class ExpenseService:
 
         print("\nReading your expense entry...")
 
-        with Spinner("Asking local Ollama to convert the expense into JSON"):
+        with Spinner("Processing your expense"):
             data = self.ollama_service.extract_expense(
                 user_text
             )
