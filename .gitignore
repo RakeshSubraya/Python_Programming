@@ -5,3 +5,5 @@ __pycache__/
 vector_db/
 .ipynb_checkpoints/
 *.db
+RAG_Implementaion/tokenizer.model
+RAG_Implementaion/tokenizer.vocab

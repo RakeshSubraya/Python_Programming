@@ -1,0 +1,5 @@
+Write an email apologizing to Sarah.
+Artificial Intelligence is changing the world.
+RAG stands for Retrieval Augmented Generation.
+Python is a programming language.
+OpenAI develops powerful language models.

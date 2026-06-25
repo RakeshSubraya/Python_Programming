@@ -10,12 +10,7 @@ The folder currently contains these starter scripts:
 RAG_Implementaion/
 |-- README.md
 |-- requirements.txt
-|-- Encode_Example.py
-|-- decoding_example.py
-|-- Indivisual_token.py
-|-- RawToken_string.py
-|-- Different_Model_Compare.py
-|-- test.py
+|-- openai_tokenizer.py
 `-- old/
 ```
 
