@@ -71,6 +71,8 @@ Project folder:
 expense-agent/
 ```
 
+The `expense-agent` project now includes a helper script to clone a reference virtual environment from the repository root into `expense-agent/.venv`.
+
 ## Planned Future Projects
 
 More Python projects can be added as separate folders, for example:
@@ -122,6 +124,17 @@ Install dependencies from the project folder you are working on:
 ```powershell
 pip install -r requirements.txt
 ```
+
+### expense-agent environment helper
+
+If the root reference environment is already configured, you can clone it into the `expense-agent` project with:
+
+```powershell
+python expense-agent\setup_env_from_root.py
+expense-agent\.venv\Scripts\python.exe expense-agent\main.py
+```
+
+If you want to create a fresh environment instead, use the normal venv setup inside `expense-agent`.
 
 ## Git Notes
 
