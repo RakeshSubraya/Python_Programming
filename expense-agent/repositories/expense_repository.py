@@ -56,7 +56,75 @@ class ExpenseRepository:
         conn.close()
 
         return rows        
-        
+
+    def get_by_id(self, expense_id):
+
+        conn = self.db_service.get_connection()
+
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT
+                id,
+                expense_date,
+                amount,
+                category,
+                description
+            FROM expenses
+            WHERE id = ?
+        """,
+        (expense_id,))
+
+        row = cursor.fetchone()
+
+        conn.close()
+
+        return row
+
+    def update(self, expense_id, expense: Expense):
+
+        conn = self.db_service.get_connection()
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            UPDATE expenses
+            SET expense_date = ?,
+                amount = ?,
+                category = ?,
+                description = ?
+            WHERE id = ?
+            """,
+            (
+                expense.expense_date,
+                expense.amount,
+                expense.category,
+                expense.description,
+                expense_id
+            )
+        )
+
+        conn.commit()
+        conn.close()
+
+    def delete(self, expense_id):
+
+        conn = self.db_service.get_connection()
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            DELETE FROM expenses
+            WHERE id = ?
+            """,
+            (expense_id,)
+        )
+
+        conn.commit()
+        conn.close()
+
     def get_monthly_summary(self, month, year):
 
         conn = self.db_service.get_connection()

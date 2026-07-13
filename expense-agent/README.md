@@ -27,8 +27,9 @@ Example parsed record:
 - Save expense records into SQLite.
 - List saved expenses.
 - Search expenses by category or description.
+- Update and delete saved expenses.
+- Export expenses to CSV or Excel.
 - Generate monthly summaries.
-- Support future CRUD operations on expense records.
 
 ## Project Structure
 
@@ -90,11 +91,7 @@ pip install -r requirements.txt
 
 The application stores records in SQLite using `expense.db`.
 
-If the database does not exist, create it with the database setup script from the `version 1.0` folder:
-
-```powershell
-python "version 1.0\create_db.py"
-```
+The database initializes automatically when the application starts, so you do not need to run the setup script manually.
 
 ## Run
 
@@ -111,7 +108,10 @@ Menu options:
 2. List Expenses
 3. Monthly Summary
 4. Search Expenses
-5. Exit
+5. Update Expense
+6. Delete Expense
+7. Export Expenses
+8. Exit
 ```
 
 ## Current Data Flow
@@ -129,8 +129,6 @@ User expense text
 
 ## Future Improvements
 
-- Add update and delete operations for full CRUD support.
-- Add automatic database initialization.
-- Add input validation and better error handling.
-- Add export support for CSV or Excel.
 - Add tests for parsing, repository, and service logic.
+- Add richer category suggestions and budgeting alerts.
+- Add history filtering by date range.

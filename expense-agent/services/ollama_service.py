@@ -74,11 +74,15 @@ class OllamaService:
             ]
         )
 
-        content = response["message"]["content"]
+        content = response.get("message", {}).get("content", "")
+        if not content:
+            raise Exception("Empty response from Ollama")
 
         match = re.search(r'\{.*\}', content, re.DOTALL)
-
         if not match:
-            raise Exception("JSON not found")
+            raise Exception(f"JSON not found in model response: {content}")
 
-        return json.loads(match.group())
+        try:
+            return json.loads(match.group())
+        except json.JSONDecodeError as exc:
+            raise Exception(f"Failed to parse JSON from response: {exc}\n{content}") from exc
