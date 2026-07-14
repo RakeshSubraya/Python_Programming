@@ -95,10 +95,18 @@ The database initializes automatically when the application starts, so you do no
 
 ## Run
 
-Start the CLI app:
+Start the graphical app:
 
 ```powershell
 python main.py
+```
+
+If a GUI is unavailable, the app falls back to the console.
+
+Start the console-only app:
+
+```powershell
+python main.py --console
 ```
 
 Menu options:

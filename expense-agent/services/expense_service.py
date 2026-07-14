@@ -97,6 +97,62 @@ class ExpenseService:
 
         return expense
 
+    def parse_expense_text(self, user_text: str):
+        data = self.ollama_service.extract_expense(user_text)
+        return self._normalize_expense_data(data)
+
+    def add_expense_record(
+        self,
+        amount,
+        category,
+        description,
+        expense_date=None
+    ):
+        data = {
+            "amount": amount,
+            "category": category,
+            "description": description,
+            "expense_date": expense_date
+        }
+        expense = self._normalize_expense_data(data)
+        self.expense_repository.save(expense)
+        return expense
+
+    def get_all_expenses(self):
+        return self.expense_repository.get_all()
+
+    def get_monthly_summary_data(self, month=None, year=None):
+        now = datetime.now()
+        if month is None:
+            month = now.month
+        if year is None:
+            year = now.year
+        return self.expense_repository.get_monthly_summary(month, year)
+
+    def get_allowed_categories(self):
+        return list(self.ALLOWED_CATEGORIES)
+
+    def format_monthly_report(self, month, year, summary_rows):
+        now = datetime.now()
+        lines = []
+        lines.append("========================================")
+        lines.append("       PERSONAL EXPENSE TRACKER")
+        lines.append("========================================")
+        lines.append(f"Generated : {now.strftime('%d-%b-%Y %I:%M %p')}")
+        lines.append(f"Report For: {calendar.month_name[month]} {year}")
+        lines.append("Report    : Monthly Expense Summary")
+        lines.append("========================================")
+        lines.append(f"{'Category':<15} {'Amount':>15}")
+        lines.append("----------------------------------------")
+        total = 0
+        for category, amount in summary_rows:
+            total += amount
+            lines.append(f"{category:<15} ₹{amount:>14.2f}")
+        lines.append("----------------------------------------")
+        lines.append(f"{'TOTAL':<15} ₹{total:>14.2f}")
+        lines.append("========================================")
+        return "\n".join(lines)
+
     def list_expenses(self):
 
         expenses = self.expense_repository.get_all()

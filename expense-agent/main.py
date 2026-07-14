@@ -1,27 +1,13 @@
+﻿import sys
+
 from services.database_service import DatabaseService
 from services.expense_service import ExpenseService
 from services.ollama_service import OllamaService
-
 from repositories.expense_repository import ExpenseRepository
 
 
-def main():
-
-    db_service = DatabaseService()
-
-    repository = ExpenseRepository(
-        db_service
-    )
-
-    ollama_service = OllamaService()
-
-    expense_service = ExpenseService(
-        ollama_service,
-        repository
-    )
-
+def run_console(expense_service):
     while True:
-
         print("\n==== Expense Agent ====")
         print("1. Add Expense")
         print("2. List Expenses")
@@ -99,6 +85,28 @@ def main():
 
         else:
             print("Invalid option")
+
+
+def main():
+    db_service = DatabaseService()
+    repository = ExpenseRepository(db_service)
+    ollama_service = OllamaService()
+    expense_service = ExpenseService(ollama_service, repository)
+
+    if len(sys.argv) > 1 and sys.argv[1] == "--console":
+        run_console(expense_service)
+        return
+
+    try:
+        from gui import ExpenseApp
+    except Exception as exc:
+        print("Unable to start graphical interface, falling back to console.")
+        print(str(exc))
+        run_console(expense_service)
+        return
+
+    app = ExpenseApp(expense_service)
+    app.run()
 
 
 if __name__ == "__main__":
