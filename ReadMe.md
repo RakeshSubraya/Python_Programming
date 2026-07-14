@@ -53,23 +53,54 @@ RAG_Implementaion/
 
 ### expense-agent
 
-This project is a local AI expense tracker. It uses Ollama to parse human-written expense details into JSON and stores the records in a SQLite database.
+This project is a local AI-powered expense tracker with both graphical and console interfaces. It uses Ollama to parse human-written expense details into JSON and stores the records in a SQLite database.
 
 Current implementation areas:
 
-1. Natural-language expense entry.
-2. Ollama-based JSON extraction.
-3. SQLite database storage.
-4. Expense listing.
-5. Expense search.
-6. Monthly expense summaries.
-7. Future full CRUD support.
+1. **Graphical User Interface (Tkinter)** - Desktop app for managing expenses
+2. **Natural-language expense entry** - Parse free-form expense descriptions
+3. **Direct form entry** - Add expenses with explicit fields (amount, category, date, description)
+4. **Ollama-based JSON extraction** - Convert natural language to structured data
+5. **SQLite database storage** - Persistent local expense records
+6. **Expense listing and searching** - View and filter expenses by category or keyword
+7. **Monthly expense reports** - Formatted reports with category breakdown and totals
+8. **Console CLI interface** - Full-featured command-line interface as fallback or standalone
+9. **Export functionality** - Export expenses to CSV or Excel
+10. **Full CRUD support** - Create, read, update, delete expenses
+
+**Key Features:**
+- Dual-interface design (GUI default, CLI fallback)
+- Real-time expense list and report generation
+- Formatted monthly summaries with totals
+- Search by category or description
+- Natural language parsing with progress feedback
+- Export to multiple formats (CSV, Excel)
 
 Project folder:
 
 ```text
 expense-agent/
+|-- main.py              # Entry point (GUI or Console)
+|-- gui.py               # Tkinter GUI interface
+|-- models/
+|-- repositories/
+|-- services/
+`-- utils/
 ```
+
+**How to Run:**
+
+GUI mode (default):
+```powershell
+python expense-agent\main.py
+```
+
+Console mode:
+```powershell
+python expense-agent\main.py --console
+```
+
+For detailed usage, see `expense-agent/README.md`.
 
 ## Planned Future Projects
 
@@ -122,6 +153,17 @@ Install dependencies from the project folder you are working on:
 ```powershell
 pip install -r requirements.txt
 ```
+
+### expense-agent environment helper
+
+If the root reference environment is already configured, you can clone it into the `expense-agent` project with:
+
+```powershell
+python expense-agent\setup_env_from_root.py
+expense-agent\.venv\Scripts\python.exe expense-agent\main.py
+```
+
+If you want to create a fresh environment instead, use the normal venv setup inside `expense-agent`.
 
 ## Git Notes
 
